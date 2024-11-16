@@ -1,10 +1,10 @@
 # Messing around with heaps in Go
 
-Some basic operations in heap structure viewed in a interactive manner, and also his performance. The `pkg` includes methods to `PushBack`, `PushFront`, `GoUp` and `GoDown` in a slice with a heap property. Also you can visualize it in a pretty manner with `prettyprint`, also inside `pkg`.
-
 <center>
 <img src="assets/BELGIUM.png" style ="width: 30%; height: auto;">
 </center>
+
+Some basic operations in heap structure viewed in a interactive manner, and also his performance. The `pkg` includes methods to `PushBack`, `PushFront`, `GoUp` and `GoDown` in a slice with a heap property. Also you can visualize it in a pretty manner with `prettyprint`, also inside `pkg`.
 
 ### PrettyPrint
 
