@@ -4,8 +4,8 @@ i:
 p:
 				go build -o performance-heap cmd/performance/main.go
 
-run-i: inter
+run-i: i 
 				./interactive-heap
 
-run-p: perf
+run-p: p
 				./performance-heap
