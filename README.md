@@ -24,7 +24,7 @@ The heap will be exhibited like this:
 
 ## Usage
 
-- **Compile**:
+- **Compiling and Running**:
 
   For building the interactive version.
 
@@ -32,19 +32,42 @@ The heap will be exhibited like this:
   make i
   ```
 
-  > It will generate `interactive-heap*`
+  > It will generate the executable `interactive-heap`
 
-  For building the version with the performance tests.
+  Or you can run, directly with:
+
+  ```terminal
+  make run-i
+  ```
+
+- **Benching**:
+
+  You can run:
+
+  ```terminal
+  make bench
+  ```
+
+  And then:
 
   ```
-  make p
+  make graphs
   ```
 
-  > It will generate `performance-heap*`
+  To build a graph like this
 
-- **Running**:
+  ![bench results](./assets/benchmark_results.png)
 
-  Simply execute the generated binary.
+  > [!NOTE]
+  > For showing hidden tests, like the `PushFront`, go in `cmd/benchmark/main.go` and change this line
+
+  ```go
+  "PushFront": {
+  StrokeColor: chart.ColorYellow,
+  StrokeWidth: 2,
+  Hidden:      true,
+  },            ☝️
+  ```
 
 ## Contributing
 
