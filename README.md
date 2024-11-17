@@ -58,16 +58,16 @@ The heap will be exhibited like this:
 
   ![bench results](./assets/benchmark_results.png)
 
-  > [!NOTE]
-  > For showing hidden tests, like the `PushFront`, go in `cmd/benchmark/main.go` and change this line
+> [!NOTE]
+> For showing hidden tests, like the `PushFront`, go in `cmd/benchmark/main.go` and change this line
 
-  ```go
-  "PushFront": {
-  StrokeColor: chart.ColorYellow,
-  StrokeWidth: 2,
-  Hidden:      true,
-  },            ☝️
-  ```
+```go
+"PushFront": {
+StrokeColor: chart.ColorYellow,
+StrokeWidth: 2,
+Hidden:      true,
+},            ☝️
+```
 
 ## Contributing
 
