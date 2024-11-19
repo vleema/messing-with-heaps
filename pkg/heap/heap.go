@@ -4,6 +4,24 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
+func HeapSort[T constraints.Ordered](slice []T) []T {
+	heap := HeapifyMax(slice)
+	for i := len(heap) - 1; i > 0; i-- {
+		heap[0], heap[i] = heap[i], heap[0]
+		goDownMax(&heap, 0, uint(i))
+	}
+	return heap
+}
+
+func HeapSortDescending[T constraints.Ordered](slice []T) []T {
+	heap := Heapify(slice)
+	for i := len(heap) - 1; i > 0; i-- {
+		heap[0], heap[i] = heap[i], heap[0]
+		goDown(&heap, 0, uint(i))
+	}
+	return heap
+}
+
 // Heapify takes a generic a slice and puts it in heap structure
 func Heapify[T constraints.Ordered](slice []T) []T {
 	out := slice
@@ -76,36 +94,42 @@ func GoUpMax[T constraints.Ordered](heap *[]T, rootIndex uint) {
 
 // GoDown sifts an element down the heap to maintain the heap property
 func GoDown[T constraints.Ordered](heap *[]T, rootIndex uint) {
-	largestValue := rootIndex
+	goDown(heap, rootIndex, uint(len(*heap)))
+}
+
+func goDown[T constraints.Ordered](heap *[]T, rootIndex, size uint) {
+	smallestValue := rootIndex
 	leftChild := 2*rootIndex + 1
 	rightChild := 2*rootIndex + 2
-	heapSize := uint(len(*heap))
-	if leftChild < heapSize && (*heap)[leftChild] < (*heap)[largestValue] {
-		largestValue = leftChild
+	if leftChild < size && (*heap)[leftChild] < (*heap)[smallestValue] {
+		smallestValue = leftChild
 	}
-	if rightChild < heapSize && (*heap)[rightChild] < (*heap)[largestValue] {
-		largestValue = rightChild
+	if rightChild < size && (*heap)[rightChild] < (*heap)[smallestValue] {
+		smallestValue = rightChild
 	}
-	if largestValue != rootIndex {
-		(*heap)[rootIndex], (*heap)[largestValue] = (*heap)[largestValue], (*heap)[rootIndex]
-		GoDown(heap, largestValue)
+	if smallestValue != rootIndex {
+		(*heap)[rootIndex], (*heap)[smallestValue] = (*heap)[smallestValue], (*heap)[rootIndex]
+		goDown(heap, smallestValue, size)
 	}
 }
 
 // GoDownMax sifts an element down the heap to maintain the max-heap property
 func GoDownMax[T constraints.Ordered](heap *[]T, rootIndex uint) {
+	goDownMax(heap, rootIndex, uint(len(*heap)))
+}
+
+func goDownMax[T constraints.Ordered](heap *[]T, rootIndex, size uint) {
 	largestValue := rootIndex
 	leftChild := 2*rootIndex + 1
 	rightChild := 2*rootIndex + 2
-	heapSize := uint(len(*heap))
-	if leftChild < heapSize && (*heap)[leftChild] > (*heap)[largestValue] {
+	if leftChild < size && (*heap)[leftChild] > (*heap)[largestValue] {
 		largestValue = leftChild
 	}
-	if rightChild < heapSize && (*heap)[rightChild] > (*heap)[largestValue] {
+	if rightChild < size && (*heap)[rightChild] > (*heap)[largestValue] {
 		largestValue = rightChild
 	}
 	if largestValue != rootIndex {
 		(*heap)[rootIndex], (*heap)[largestValue] = (*heap)[largestValue], (*heap)[rootIndex]
-		GoDown(heap, largestValue)
+		goDownMax(heap, largestValue, size)
 	}
 }

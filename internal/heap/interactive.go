@@ -2,10 +2,10 @@ package heap
 
 import (
 	"fmt"
+	"heap/pkg/prettyprint"
 	"time"
 
 	"golang.org/x/exp/constraints"
-	"heap/pkg/prettyprint"
 )
 
 const SLEEP_TIME = 2 * time.Second
@@ -42,8 +42,8 @@ func InteractivelyGoDown[T constraints.Ordered](heap *[]T, rootIndex uint) {
 		largestValue = rightChild
 	}
 	if largestValue != rootIndex {
-		fmt.Printf(">>> Swapping elements %v (index %d) and %v (index %d)\n", (*heap)[rootIndex], rootIndex, (*heap)[largestValue], largestValue)
 		(*heap)[rootIndex], (*heap)[largestValue] = (*heap)[largestValue], (*heap)[rootIndex]
+		fmt.Printf(">>> Swapping elements %v (index %d) and %v (index %d)\n", (*heap)[rootIndex], rootIndex, (*heap)[largestValue], largestValue)
 		prettyprint.PrintHeap(*heap)
 		time.Sleep(SLEEP_TIME)
 		InteractivelyGoDown(heap, largestValue)

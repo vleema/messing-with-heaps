@@ -3,14 +3,13 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"heap/internal/heap"
+	"heap/pkg/prettyprint"
 	"os"
 	"os/exec"
 	"runtime"
 	"strconv"
 	"strings"
-
-	"heap/internal/heap"
-	"heap/pkg/prettyprint"
 )
 
 func main() {
